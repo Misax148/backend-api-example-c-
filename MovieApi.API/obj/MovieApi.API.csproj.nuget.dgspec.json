@@ -1,0 +1,231 @@
+{
+  "format": 1,
+  "restore": {
+    "/home/axel/Documents/JALA-USB/API-REST/MovieApi/MovieApi.API/MovieApi.API.csproj": {}
+  },
+  "projects": {
+    "/home/axel/Documents/JALA-USB/API-REST/MovieApi/MovieApi.API/MovieApi.API.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/home/axel/Documents/JALA-USB/API-REST/MovieApi/MovieApi.API/MovieApi.API.csproj",
+        "projectName": "MovieApi.API",
+        "projectPath": "/home/axel/Documents/JALA-USB/API-REST/MovieApi/MovieApi.API/MovieApi.API.csproj",
+        "packagesPath": "/home/axel/.nuget/packages/",
+        "outputPath": "/home/axel/Documents/JALA-USB/API-REST/MovieApi/MovieApi.API/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/home/axel/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {
+              "/home/axel/Documents/JALA-USB/API-REST/MovieApi/MovieApi.Core/MovieApi.Core.csproj": {
+                "projectPath": "/home/axel/Documents/JALA-USB/API-REST/MovieApi/MovieApi.Core/MovieApi.Core.csproj"
+              },
+              "/home/axel/Documents/JALA-USB/API-REST/MovieApi/MovieApi.Infraestructure/MovieApi.Infraestructure.csproj": {
+                "projectPath": "/home/axel/Documents/JALA-USB/API-REST/MovieApi/MovieApi.Infraestructure/MovieApi.Infraestructure.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "dependencies": {
+            "FluentValidation.AspNetCore": {
+              "target": "Package",
+              "version": "[11.3.0, )"
+            },
+            "Microsoft.AspNetCore.OpenApi": {
+              "target": "Package",
+              "version": "[8.0.10, )"
+            },
+            "Swashbuckle.AspNetCore": {
+              "target": "Package",
+              "version": "[6.6.2, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
+              "privateAssets": "none"
+            },
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/8.0.110/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "/home/axel/Documents/JALA-USB/API-REST/MovieApi/MovieApi.Core/MovieApi.Core.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/home/axel/Documents/JALA-USB/API-REST/MovieApi/MovieApi.Core/MovieApi.Core.csproj",
+        "projectName": "MovieApi.Core",
+        "projectPath": "/home/axel/Documents/JALA-USB/API-REST/MovieApi/MovieApi.Core/MovieApi.Core.csproj",
+        "packagesPath": "/home/axel/.nuget/packages/",
+        "outputPath": "/home/axel/Documents/JALA-USB/API-REST/MovieApi/MovieApi.Core/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/home/axel/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "dependencies": {
+            "BCrypt.Net-Next": {
+              "target": "Package",
+              "version": "[4.0.3, )"
+            },
+            "FluentValidation.AspNetCore": {
+              "target": "Package",
+              "version": "[11.3.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/8.0.110/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "/home/axel/Documents/JALA-USB/API-REST/MovieApi/MovieApi.Infraestructure/MovieApi.Infraestructure.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/home/axel/Documents/JALA-USB/API-REST/MovieApi/MovieApi.Infraestructure/MovieApi.Infraestructure.csproj",
+        "projectName": "MovieApi.Infraestructure",
+        "projectPath": "/home/axel/Documents/JALA-USB/API-REST/MovieApi/MovieApi.Infraestructure/MovieApi.Infraestructure.csproj",
+        "packagesPath": "/home/axel/.nuget/packages/",
+        "outputPath": "/home/axel/Documents/JALA-USB/API-REST/MovieApi/MovieApi.Infraestructure/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/home/axel/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {
+              "/home/axel/Documents/JALA-USB/API-REST/MovieApi/MovieApi.Core/MovieApi.Core.csproj": {
+                "projectPath": "/home/axel/Documents/JALA-USB/API-REST/MovieApi/MovieApi.Core/MovieApi.Core.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "dependencies": {
+            "Dapper": {
+              "target": "Package",
+              "version": "[2.1.35, )"
+            },
+            "Microsoft.Extensions.Configuration.Abstractions": {
+              "target": "Package",
+              "version": "[8.0.0, )"
+            },
+            "Microsoft.Extensions.DependencyInjection.Abstractions": {
+              "target": "Package",
+              "version": "[8.0.2, )"
+            },
+            "Microsoft.Extensions.Options": {
+              "target": "Package",
+              "version": "[8.0.2, )"
+            },
+            "Microsoft.Extensions.Options.ConfigurationExtensions": {
+              "target": "Package",
+              "version": "[8.0.0, )"
+            },
+            "Npgsql": {
+              "target": "Package",
+              "version": "[8.0.5, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/8.0.110/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,140 @@
+@startuml "domain"
+
+package "Domain" {
+    package "Entities" <<Frame>> {
+        class Movie {
+            + Id: Guid
+            + Title: string
+            + ReleaseDate: DateTime
+            + Description: string
+            + Genre: string
+            + Rating: decimal
+            + Actors: ICollection<Actor>
+        }
+
+        class Actor {
+            + Id: Guid
+            + Name: string
+            + Biography: string
+            + Birthdate: DateTime
+            + Movies: ICollection<Movie>
+        }
+
+        class User {
+            + Id: Guid
+            + Username: string
+            + Email: string
+            + PasswordHash: string
+            + Role: string
+        }
+    }
+
+    package "Exceptions" <<Frame>> {
+        abstract class ApiException extends Exception {
+            + StatusCode: HttpStatusCode
+            + ErrorCode: string
+            + TimeStamp: DateTime
+
+            # ApiException(HttpStatusCode statusCode, string message, string errorCode)
+        }
+
+        class BadRequestException extends ApiException {
+            + BadRequestException(string message)
+        }
+
+        class InternalServerErrorException extends ApiException {
+            + InternalServerErrorException(string message)
+        }
+
+        class NotFoundException extends ApiException {
+            + NotFoundException(string message)
+        }
+
+        class ErrorDetails {
+            + StatusCode: int
+            + Message: string
+            + ErrorCode: string
+            + TimeStamp: DateTime
+            + Details: List<ValidationError>
+        }
+
+        class ValidationError {
+            + PropertyName: string
+            + ErrorMessage: string
+        }
+
+        ErrorDetails --> ValidationError : uses
+    }
+
+    package "Interfaces" <<Frame>> {
+        package "Repositories" {
+            interface IRepository< <T> where T: class> {
+                + Task<bool> CreateAsync(T item)
+                + Task<bool> UpdateAsync(T item)
+                + Task<bool> DeleteAsync(Guid item)
+                + Task<T> GetByIdAsync(Guid id)
+                + Task<IEnumerable<T>> GetAllAsync()
+            }
+
+            interface IUserRepository {
+                + Task<User> GetUserByEmailAsync(string email)
+                + Task<bool> IsEmailUniqueAsync(string email)
+                + Task<bool> ResetPasswordAsync(string email)
+            }
+
+            interface IMovieRepository {
+                + Task<Movie> GetMovieWithActorsAsync(Guid movieId)
+                + Task<IEnumerable<Movie>> GetMoviesByGenreAsync(string genre)
+                + Task<IEnumerable<Movie>> GetMoviesByRatingAsync(decimal rating)
+            }
+
+            interface IActorRepository {
+                + Task<IEnumerable<Actor>> GetActorsByMovieAsync(Guid movieId)
+                + Task<IEnumerable<Actor>> GetActorsByAgeRangeAsync(int minAge, int maxAge)
+                + Task<int> GetMovieCountByActorAsync(Guid actorId)
+            }
+        }
+
+        package "Services" {
+            interface IMovieService {
+                + Task<MovieDto> CreateMovieAsync(CreateMovieDto movieDto)
+                + Task<MovieDto> UpdateMovieAsync(Guid id, CreateMovieDto movieDTO)
+                + Task<bool> DeleteMovieAsync(Guid id)
+                + Task<MovieDto> GetMovieByIdAsync(Guid id)
+                + Task<IEnumerable<MovieDto>> GetAllMoviesAsync()
+                + Task<MovieDto> GetMovieWithActorsAsync(Guid movieId)
+                + Task<IEnumerable<MovieDto>> GetMoviesByGenreAsync(string genre)
+                + Task<IEnumerable<MovieDto>> GetMoviesByRatingAsync(decimal rating)
+            }
+
+            interface IActorService {
+                + Task<ActorDto> CreateActorAsync(CreateActorDto actorDto)
+                + Task<ActorDto> UpdateActorAsync(Guid id, CreateActorDto actorDto)
+                + Task<bool> DeleteActorAsync(Guid id)
+                + Task<ActorDto> GetActorByIdAsync(Guid id)
+                + Task<IEnumerable<ActorDto>> GetAllActorsAsync()
+                + Task<IEnumerable<ActorDto>> GetActorsByMovieAsync(Guid movieId)
+                + Task<IEnumerable<ActorDto>> GetActorsByAgeRangeAsync(int minAge, int maxAge)
+                + Task<int> GetMovieCountByActorAsync(Guid actorId)
+            }
+
+            interface IUserService {
+                + Task<UserDto> CreateUserAsync(CreateUserDto userDto)
+                + Task<UserDto> UpdateUserAsync(Guid id, CreateUserDto userDto)
+                + Task<bool> DeleteUserAsync(Guid id)
+                + Task<UserDto> GetUserByIdAsync(Guid id)
+                + Task<UserDto> GetUserByEmailAsync(string email)
+                + Task<bool> IsEmailUniqueAsync(string email)
+            }
+
+            interface IAuthService {
+                + Task<AuthResponseDto> LoginAsync(LoginDto loginDto)
+                + Task<bool> ChangePasswordAsync(Guid userId, string currentPassword, string newPassword)
+                + Task<string> GeneratePasswordResetTokenAsync(string email)
+                + Task<bool> ResetPasswordAsync(string email, string token, string newPassword)
+            }
+        }
+    }
+}
+
+@enduml

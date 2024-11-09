@@ -1,0 +1,29 @@
+@startuml "System design"
+
+
+package "system-design" {
+    !include MovieApi.API/api.puml
+    !include MovieApi.Core/core.puml
+    !include MovieApi.Infraestructure/infraestructure.puml
+    
+    IActorService -up-* ActorController
+    IUserService -up-* UserController
+    IMovieService -up-* MovieController
+    IAuthService -up-* AuthController
+
+    Validators -right-* ActorService
+    Validators -right-* UserService
+    Validators -right-* MovieService
+    Validators -right-* AuthService
+
+    IDbConnectionFactory -up-* UserRepository
+    IDbConnectionFactory -up-* ActorRepository
+    IDbConnectionFactory -up-* MovieRepository
+
+    BaseRepository .up.|> IRepository
+    IActorRepository ..|> ActorRepository
+    IUserRepository ..|> UserRepository
+    IMovieRepository ..|> MovieRepository
+}
+
+@enduml

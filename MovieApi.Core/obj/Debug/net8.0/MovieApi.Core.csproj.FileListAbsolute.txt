@@ -1,0 +1,12 @@
+/home/axel/Documents/JALA-USB/API-REST/MovieApi/MovieApi.Core/bin/Debug/net8.0/MovieApi.Core.deps.json
+/home/axel/Documents/JALA-USB/API-REST/MovieApi/MovieApi.Core/bin/Debug/net8.0/MovieApi.Core.dll
+/home/axel/Documents/JALA-USB/API-REST/MovieApi/MovieApi.Core/bin/Debug/net8.0/MovieApi.Core.pdb
+/home/axel/Documents/JALA-USB/API-REST/MovieApi/MovieApi.Core/obj/Debug/net8.0/MovieApi.Core.csproj.AssemblyReference.cache
+/home/axel/Documents/JALA-USB/API-REST/MovieApi/MovieApi.Core/obj/Debug/net8.0/MovieApi.Core.GeneratedMSBuildEditorConfig.editorconfig
+/home/axel/Documents/JALA-USB/API-REST/MovieApi/MovieApi.Core/obj/Debug/net8.0/MovieApi.Core.AssemblyInfoInputs.cache
+/home/axel/Documents/JALA-USB/API-REST/MovieApi/MovieApi.Core/obj/Debug/net8.0/MovieApi.Core.AssemblyInfo.cs
+/home/axel/Documents/JALA-USB/API-REST/MovieApi/MovieApi.Core/obj/Debug/net8.0/MovieApi.Core.csproj.CoreCompileInputs.cache
+/home/axel/Documents/JALA-USB/API-REST/MovieApi/MovieApi.Core/obj/Debug/net8.0/MovieApi.Core.dll
+/home/axel/Documents/JALA-USB/API-REST/MovieApi/MovieApi.Core/obj/Debug/net8.0/refint/MovieApi.Core.dll
+/home/axel/Documents/JALA-USB/API-REST/MovieApi/MovieApi.Core/obj/Debug/net8.0/MovieApi.Core.pdb
+/home/axel/Documents/JALA-USB/API-REST/MovieApi/MovieApi.Core/obj/Debug/net8.0/ref/MovieApi.Core.dll

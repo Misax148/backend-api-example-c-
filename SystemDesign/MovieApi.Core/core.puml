@@ -1,0 +1,31 @@
+@startuml "Core"
+
+title Core
+
+package "Core" {
+    !include domain.puml
+    !include application.puml
+
+    IMovieService <|.up. MovieService
+    IUserService <|.up. UserService
+    IActorService <|.up. ActorService
+    IAuthService <|.up. AuthService
+
+    IMovieRepository -up-* MovieService
+    IUserRepository -up-* UserService
+    IActorRepository -up-* ActorService
+    IUserRepository -up-* AuthService
+ 
+    CreateMovieDto -up-* MovieService 
+    UpdateMovieDto -up-* MovieService 
+
+    CreateUserDto -up-* UserService
+    UpdateUserDto -up-* UserService 
+
+    LoginDto -up-* AuthService
+    
+    CreateActorDto -up-* ActorService
+    UpdateActorDto -up-* ActorService
+}
+
+@enduml

@@ -1,0 +1,48 @@
+@startuml "repositories"
+
+package "Repositories" {
+    abstract class BaseRepository< <T> where T : class> {
+        # _connection: IDbConnetion
+        # TableName: abstract string
+        --
+        + BaseRepository(IDbConnetion connection)
+        --
+        + virtual Task<bool> CreateAsync(T item)
+        + virtual Task<bool> UpdateAsync(T item)
+        + virtual Task<bool> DeleteAsync(Guid item)
+        + virtual Task<T> GetByIdAsync(Guid id)
+        + virtual Task<IEnumerable<T>> GetAllAsync()
+    }
+
+    class MovieRepository extends BaseRepository {
+        # TableName => string override "Movie"
+        --
+        + MovieRepository(IDbConnetion connection) : base(connection)
+        --
+        + Task<Movie> GetMovieWithActorsAsync(Guid movieId)
+        + Task<IEnumerable<Movie>> GetMoviesByGenreAsync(string genre)
+        + Task<IEnumerable<Movie>> GetMoviesByRatingAsync(decimal rating)
+    }
+
+    class UserRepository extends BaseRepository {
+        # TableName => string override "Users"
+        --
+        + UserRepository(IDbConnetion connection) : base(connection)
+        --
+        + Task<User> GetUserByEmailAsync(string email)
+        + Task<bool> IsEmailUniqueAsync(string email)
+        + Task<bool> ResetPasswordAsync(string email)
+    }
+
+    class ActorRepository extends BaseRepository {
+        # TableName => string override "Actor"
+        --
+        + ActorRepository(IDbConnetion connection) : base(connection)
+        --
+        + Task<IEnumerable<Actor>> GetActorsByMovieAsync(Guid movieId)
+        + Task<IEnumerable<Actor>> GetActorsByAgeRangeAsync(int minAge, int maxAge)
+        + Task<int> GetMovieCountByActorAsync(Guid actorId)
+    }
+}
+
+@enduml

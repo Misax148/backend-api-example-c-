@@ -1,0 +1,59 @@
+@startuml "controllers"
+
+package "controllers" {
+    class UserController {
+        - _userService: IUserService
+        --
+        + UserController(IUserService userService)
+        --
+        + Task<ActionResult> CreateUserAsync(CreateUserDto userDto)
+        + Task<ActionResult> UpdateUserAsync(Guid id, CreateUserDto userDto)
+        + Task<ActionResult> DeleteUserAsync(Guid id)
+        + Task<ActionResult> GetUserByIdAsync(Guid id)
+        + Task<ActionResult> GetUserByEmailAsync(string email)
+        + Task<ActionResult> IsEmailUniqueAsync(string email)
+    }
+
+    class MovieController {
+        - _movieService: IMovieService
+        --
+        + UserController(IMovieService movieService)
+        --
+        + Task<ActionResult> CreateMovieAsync(CreateMovieDto movieDto)
+        + Task<ActionResult> UpdateMovieAsync(Guid id, CreateMovieDto movieDTO)
+        + Task<ActionResult> DeleteMovieAsync(Guid id)
+        + Task<ActionResult> GetMovieByIdAsync(Guid id)
+        + Task<ActionResult> GetAllMoviesAsync()
+        + Task<ActionResult> GetMovieWithActorsAsync(Guid movieId)
+        + Task<ActionResult> GetMoviesByGenreAsync(string genre)
+        + Task<ActionResult> GetMoviesByRatingAsync(decimal rating)
+    }
+
+    class ActorController {
+        - _actorService: IActorService
+        --
+        + ActorController(IActorService actorService)
+        --
+        + Task<ActionResult> CreateActorAsync(CreateActorDto actorDto)
+        + Task<ActionResult> UpdateActorAsync(Guid id, CreateActorDto actorDto)
+        + Task<ActionResult> DeleteActorAsync(Guid id)
+        + Task<ActionResult> GetActorByIdAsync(Guid id)
+        + Task<ActionResult> GetAllActorsAsync()
+        + Task<ActionResult> GetActorsByMovieAsync(Guid movieId)
+        + Task<ActionResult> GetActorsByAgeRangeAsync(int minAge, int maxAge)
+        + Task<ActionResult> GetMovieCountByActorAsync(Guid actorId)
+    }
+
+    class AuthController {
+        - _authService: IAuthService
+        --
+        + AuthController(IAuthService authService)
+        --
+        + Task<ActionResult> LoginAsync(LoginDto loginDto)
+        + Task<ActionResult> ChangePasswordAsync(Guid userId, string currentPassword, string newPassword)
+        + Task<ActionResult> GeneratePasswordResetTokenAsync(string email)
+        + Task<ActionResult> ResetPasswordAsync(string email, string token, string newPassword)
+    }
+}
+
+@endumlpackage 

@@ -1,0 +1,10 @@
+@startuml "api"
+
+package "api" {
+    !include controllers.puml
+
+    class Validators
+    class Middlewares
+}
+
+@enduml

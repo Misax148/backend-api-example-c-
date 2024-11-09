@@ -1,0 +1,14 @@
+{
+  "version": 2,
+  "dgSpecHash": "RTZO5ZJvgGL9eBofSwI/d8fD5SanIaPmTFcrp8yK1pTNFOwUcM50AfiIx65lHg+To01FlILAh4fqThkqekrXwg==",
+  "success": true,
+  "projectFilePath": "/home/axel/Documents/JALA-USB/API-REST/MovieApi/MovieApi.Core/MovieApi.Core.csproj",
+  "expectedPackageFiles": [
+    "/home/axel/.nuget/packages/bcrypt.net-next/4.0.3/bcrypt.net-next.4.0.3.nupkg.sha512",
+    "/home/axel/.nuget/packages/fluentvalidation/11.5.1/fluentvalidation.11.5.1.nupkg.sha512",
+    "/home/axel/.nuget/packages/fluentvalidation.aspnetcore/11.3.0/fluentvalidation.aspnetcore.11.3.0.nupkg.sha512",
+    "/home/axel/.nuget/packages/fluentvalidation.dependencyinjectionextensions/11.5.1/fluentvalidation.dependencyinjectionextensions.11.5.1.nupkg.sha512",
+    "/home/axel/.nuget/packages/microsoft.extensions.dependencyinjection.abstractions/2.1.0/microsoft.extensions.dependencyinjection.abstractions.2.1.0.nupkg.sha512"
+  ],
+  "logs": []
+}

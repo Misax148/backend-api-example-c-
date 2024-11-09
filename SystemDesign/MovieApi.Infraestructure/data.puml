@@ -1,0 +1,36 @@
+@startuml "data"
+
+package "data" <<Frame>> {
+    package "DbConnection" {    
+        interface IDbConnectionFactory {
+            + Task<IDbConnection> CreateConnectionAsync()
+        }
+
+        class DbConnection {
+            - _options: DataBaseOptions
+            --
+            + DbConnection(IOptions<DataBaseOptions> options)
+            --
+            + Task<IDbConnection> CreateConnectionAsync()
+        }
+
+        class DataBaseOptions {
+            + ConnectionStrings: const string = nameof(ConnectionStrings)
+            + DefaultConnection: string 
+        }
+
+        DbConnection --> DataBaseOptions : uses
+        DbConnection ..|> IDbConnectionFactory
+    }
+
+    package "Scripts" {
+        object Script_001_CreateTables
+        object Script_002_InsertData
+    }
+
+    package "QueryConstants" {
+        class QueryConstants 
+    }
+}
+
+@enduml

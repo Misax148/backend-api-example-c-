@@ -1,0 +1,13 @@
+@startuml "dependency inyection"
+
+package "dependency inyection" {
+    class DependencyInjection <<static>> {
+        + static IServiceCollection AddInfraestructure(this IServiceCollection services, IConfiguration configuration)
+        + static IServiceCollection AddDataBase(this IServiceCollection services, IConfiguration configuration)
+        + static IServiceCollection AddRepositories(this IServiceCollection services)
+        + static IServiceCollection AddServices(this IServiceCollection services)
+        + static IServiceCollection AddAuthService(this IServiceCollection services)
+    }
+}
+
+@enduml

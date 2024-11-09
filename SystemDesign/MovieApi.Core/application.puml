@@ -1,0 +1,209 @@
+@startuml "application"
+
+package "Application" {
+    package "DTO's" <<Frame>> {
+        class MovieDto {
+            + Guid Id
+            + string Title
+            + DateTime ReleaseDate
+            + string Description
+            + string Genre
+            + decimal Rating
+            + ICollection<ActorDto> Actors
+        }
+
+        class CreateMovieDto {
+            + string Title
+            + DateTime ReleaseDate
+            + string Description
+            + string Genre
+            + decimal Rating
+        }
+
+        class UpdateMovieDto {
+            + string Title
+            + DateTime ReleaseDate
+            + string Description
+            + string Genre
+            + decimal Rating
+        }
+
+        class MovieWithActorsDto {
+            + Guid Id
+            + string Title
+            + string Description
+            + string Genre
+            + decimal Rating
+            + ICollection<ActorSimpleDto> Actors
+        }
+
+        class ActorDto {
+            + Guid Id
+            + string Name
+            + string Biography
+            + DateTime Birthdate
+            + ICollection<MovieSimpleDto> Movies
+        }
+
+        class ActorSimpleDto {
+            + Guid Id
+            + string Name
+            + DateTime Birthdate
+        }
+
+        class CreateActorDto {
+            + string Name
+            + string Biography
+            + DateTime Birthdate
+        }
+
+        class UpdateActorDto {
+            + string Name
+            + string Biography
+            + DateTime Birthdate
+        }
+
+        class UserDto {
+            + Guid Id
+            + string Username
+            + string Email
+            + string Role
+        }
+
+        class CreateUserDto {
+            + string Username
+            + string Email
+            + string Password
+            + string Role = "User"
+        }
+
+        class UpdateUserDto {
+            + string Username
+            + string Email
+            + string Role
+        }
+
+        class LoginDto {
+            + string Email
+            + string Password
+        }
+
+        class AuthResponseDto {
+            + string Token
+            + string Email
+            + string Username
+            + string Role
+            + DateTime ExpirationTime
+        }
+
+        class ChangePasswordDto {
+            + string CurrentPassword
+            + string NewPassword
+            + string ConfirmNewPassword
+        }
+
+        class ResetPasswordDto {
+            + string Email
+            + string Token
+            + string NewPassword
+            + string ConfirmNewPassword
+        }
+
+        class MovieSimpleDto {
+            + Guid Id
+            + string Title
+            + string Genre
+            + decimal Rating
+        }
+
+        MovieDto --> ActorDto : "Actors"
+        MovieWithActorsDto --> ActorSimpleDto : "Actors"
+        ActorDto --> MovieSimpleDto : "Movies"
+    }
+
+    package "Services" <<Frame>> {
+        class MovieService {
+            - readonly IMovieRepository _movieRepository
+            - readonly IValidator<CreateMovieDto> _createMovieValidator
+            - readonly IValidator<UpdateMovieDto> _updateMovieValidator
+
+            + MovieService(IMovieRepository movieRepository, IValidator<CreateMovieDto> createMovieValidator, IValidator<UpdateMovieDto> updateMovieValidator)
+
+            + Task<MovieDto> CreateMovieAsync(CreateMovieDto movieDto)
+            + Task<MovieDto> UpdateMovieAsync(Guid id, UpdateMovieDto movieDto)
+            + Task<bool> DeleteMovieAsync(Guid id)
+            + Task<MovieDto> GetMovieByIdAsync(Guid id)
+            + Task<IEnumerable<MovieDto>> GetAllMoviesAsync()
+            + Task<MovieDto> GetMovieWithActorsAsync(Guid movieId)
+            + Task<IEnumerable<MovieDto>> GetMoviesByGenreAsync(string genre)
+            + Task<IEnumerable<MovieDto>> GetMoviesByRatingAsync(decimal rating)
+
+            - Task<Movie> ValidateCreateMovie(CreateMovieDto movieDto)
+            - Task<Movie> ValidateUpdateMovie(UpdateMovieDto movieDto)
+            - MovieDto MapToDto(Movie movie)
+            - Movie MapToEntity(CreateMovieDto dto)
+        }
+
+        class ActorService {
+            - readonly IActorRepository _actorRepository
+            - readonly IValidator<CreateActorDto> _createActorValidator
+            - readonly IValidator<UpdateActorDto> _updateActorValidator
+
+            + ActorService(IActorRepository actorRepository, IValidator<CreateActorDto> createActorValidator, IValidator<UpdateActorDto> updateActorValidator)
+
+            + Task<ActorDto> CreateActorAsync(CreateActorDto actorDto)
+            + Task<ActorDto> UpdateActorAsync(Guid id, UpdateActorDto actorDto)
+            + Task<bool> DeleteActorAsync(Guid id)
+            + Task<ActorDto> GetActorByIdAsync(Guid id)
+            + Task<IEnumerable<ActorDto>> GetAllActorsAsync()
+            + Task<IEnumerable<ActorDto>> GetActorsByMovieAsync(Guid movieId)
+            + Task<IEnumerable<ActorDto>> GetActorsByAgeRangeAsync(int minAge, int maxAge)
+            + Task<int> GetMovieCountByActorAsync(Guid actorId)
+
+            - Task<Actor> ValidateCreateActor(CreateActorDto actorDto)
+            - Task<Actor> ValidateUpdateActor(UpdateActorDto actorDto)
+            - ActorDto MapToDto(Actor actor)
+            - Actor MapToEntity(CreateActorDto dto)
+        }
+
+        class UserService {
+            - readonly IUserRepository _userRepository
+            - readonly IValidator<CreateUserDto> _createUserValidator
+            - readonly IValidator<UpdateUserDto> _updateUserValidator
+            - readonly IPasswordHasher _passwordHasher
+
+            + UserService(IUserRepository userRepository, IValidator<CreateUserDto> createUserValidator, IValidator<UpdateUserDto> updateUserValidator, IPasswordHasher passwordHasher)
+
+            + Task<UserDto> CreateUserAsync(CreateUserDto userDto)
+            + Task<UserDto> UpdateUserAsync(Guid id, UpdateUserDto userDto)
+            + Task<bool> DeleteUserAsync(Guid id)
+            + Task<UserDto> GetUserByIdAsync(Guid id)
+            + Task<UserDto> GetUserByEmailAsync(string email)
+            + Task<bool> IsEmailUniqueAsync(string email)
+
+            - Task<User> ValidateCreateUser(CreateUserDto userDto)
+            - Task<User> ValidateUpdateUser(UpdateUserDto userDto)
+            - UserDto MapToDto(User user)
+            - User MapToEntity(CreateUserDto dto)
+        }
+
+        class AuthService {
+            - readonly IUserRepository _userRepository
+            - readonly IValidator<LoginDto> _loginValidator
+            - readonly IPasswordHasher _passwordHasher
+            - readonly IJwtTokenGenerator _tokenGenerator
+
+            + AuthService(IUserRepository userRepository, IValidator<LoginDto> loginValidator, IPasswordHasher passwordHasher, IJwtTokenGenerator tokenGenerator)
+
+            + Task<AuthResponseDto> LoginAsync(LoginDto loginDto)
+            + Task<bool> ChangePasswordAsync(Guid userId, string currentPassword, string newPassword)
+            + Task<string> GeneratePasswordResetTokenAsync(string email)
+            + Task<bool> ResetPasswordAsync(string email, string token, string newPassword)
+
+            - Task<User> ValidateAndAuthenticate(LoginDto loginDto)
+            - string GenerateToken(User user)
+        }
+    }
+}
+
+@enduml

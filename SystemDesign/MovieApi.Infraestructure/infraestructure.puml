@@ -1,0 +1,9 @@
+@startuml "infraestructure"
+
+package "infraestructure" {
+    !include data.puml
+    !include dependencyInyection.puml
+    !include repositories.puml
+}
+
+@enduml
